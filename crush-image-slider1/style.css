@@ -1,0 +1,132 @@
+/* General Styling */
+body {
+    margin: 0;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Gradient Circles */
+  .gradient-circle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  
+  .outer-circle {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 0, 150, 0.6), transparent);
+    z-index: 1;
+    filter: blur(100px);
+  }
+  
+  .inner-circle {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 150, 255, 0.6), transparent);
+    z-index: 1;
+    filter: blur(100px);
+  }
+  
+  /* Position the Circles */
+  .outer-circle {
+    top: calc(50% - 250px);
+    left: calc(50% - 250px);
+  }
+  
+  .inner-circle {
+    top: calc(50% - 150px);
+    left: calc(50% - 150px);
+  }
+  
+  /* Slider Container */
+  .slider-container {
+    perspective: 1000px;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Slider */
+  .slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
+  }
+  
+  /* Slide Styling */
+  .slide {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slide-text {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    bottom: 0px; /* Adjust this value to your preference */
+    left: 50%;
+    transform: translateX(-50%);
+    
+  }
+  
+  
+  
+  /* 3D Rotation and Position of Each Slide */
+  .slide:nth-child(1) {
+    transform: rotateY(0deg) translateZ(300px);
+  }
+  .slide:nth-child(2) {
+    transform: rotateY(60deg) translateZ(300px);
+  }
+  .slide:nth-child(3) {
+    transform: rotateY(120deg) translateZ(300px);
+  }
+  .slide:nth-child(4) {
+    transform: rotateY(180deg) translateZ(300px);
+  }
+  .slide:nth-child(5) {
+    transform: rotateY(240deg) translateZ(300px);
+  }
+  .slide:nth-child(6) {
+    transform: rotateY(300deg) translateZ(300px);
+  }
+  
+
+  
+  /* Pause Slider on Hover */
+  .slider-container:hover .slider {
+    animation-play-state: paused;
+  }
+  
+  /* Keyframes for Rotation */
+  @keyframes rotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+  
