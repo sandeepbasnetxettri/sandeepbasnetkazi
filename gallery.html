@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="keywords"
+        content="sandeepbasnetxettri, portfolio, jigar, full stack dev, personal portfolio lifecodes, portfolio design, portfolio website, personal portfolio" />
+    <meta name="description"
+        content="Welcome to Jigar's Portfolio. Full-Stack Web Developer and Android App Developer" />
+    <!-- Custom CSS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <link rel="website icon" type="jng" href="image/1.jpg">
+    <title>sandeepbasnetxettri</title>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4F46E5",
+                        secondary: "#6366F1",
+                    },
+                    borderRadius: {
+                        none: "0px",
+                        sm: "4px",
+                        DEFAULT: "8px",
+                        md: "12px",
+                        lg: "16px",
+                        xl: "20px",
+                        "2xl": "24px",
+                        "3xl": "32px",
+                        full: "9999px",
+                        button: "8px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border: 2px solid white;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <header>
+        <a href="index.html" class="logo"><i class="fab fa-node-sandeep"></i> Sandeep kazi </a>
+
+        <div id="menu" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#education">Education</a></li>
+                <li><a href="index.html#work">Work</a></li>
+                <li><a href="index.html#experience">Experience</a></li>
+                <li><a href="index.html#books">Books</a></li>
+                <li><a class="active" href="gallery.html">Gallery</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="hero" class="pt-20 relative min-h-screen flex items-center"
+        style="background-image: url(gallery/35.jpg); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-white/30"></div>
+        <div class="container mx-auto px-4 py-20 relative">
+            <div class="max-w-2xl">
+                <h1 class="text-5xl font-bold text-gray-900 mb-6">
+                    Welcome to Kazi 's Gallery
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#003366",
+                        secondary: "#4A90E2",
+                    },
+                    borderRadius: {
+                        none: "0px",
+                        sm: "4px",
+                        DEFAULT: "8px",
+                        md: "12px",
+                        lg: "16px",
+                        xl: "20px",
+                        "2xl": "24px",
+                        "3xl": "32px",
+                        full: "9999px",
+                        button: "8px",
+                    },
+                },
+            },
+        };
+    </script>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="gallery-grid" id="gallery"></div>
+    </main>
+
+    <div class="lightbox" id="lightbox">
+        <button class="absolute top-4 right-4 text-white hover:text-gray-300 z-50" onclick="closeLightbox()">
+            <i class="ri-close-line w-8 h-8 flex items-center justify-center text-2xl"></i>
+        </button>
+        <button class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300" onclick="prevImage()">
+            <i class="ri-arrow-left-line w-8 h-8 flex items-center justify-center text-2xl"></i>
+        </button>
+        <img id="lightboxImage" class="max-h-[80vh] max-w-[80vw] object-contain" src="" alt="Gallery image" />
+        <button class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300" onclick="nextImage()">
+            <i class="ri-arrow-right-line w-8 h-8 flex items-center justify-center text-2xl"></i>
+        </button>
+        <div class="thumbnail-container" id="thumbnailContainer"></div>
+    </div>
+
+    <script>
+        const images = [
+            {
+                url: "gallery/1.jpeg",
+            },
+            {
+                url: "gallery/2.jpeg",
+            },
+            {
+                url: "gallery/3.jpg",
+            },
+            {
+                url: "gallery/4.jpeg",
+            },
+            {
+                url: "gallery/5.jpeg",
+            },
+            {
+                url: "gallery/6.jpg",
+            },
+            {
+                url: "gallery/7.jpg",
+            },
+            {
+                url: "gallery/8.jpeg",
+            },
+            {
+                url: "gallery/9.jpeg",
+            },
+            {
+                url: "gallery/10.jpg",
+            },
+            {
+                url: "gallery/11.jpeg",
+            },
+            {
+                url: "gallery/12.jpeg",
+            },
+            {
+                url: "gallery/13.jpeg",
+            },
+            {
+                url: "gallery/14.jpeg",
+            },
+            {
+                url: "gallery/15.jpeg",
+            },
+            {
+                url: "gallery/16.jpeg",
+            },
+            {
+                url: "gallery/17.jpeg",
+            },
+            {
+                url: "gallery/18.jpeg",
+            },
+            {
+                url: "gallery/19.jpeg",
+            },
+            {
+                url: "gallery/20.jpeg",
+            },
+            {
+                url: "gallery/21.jpeg",
+            },
+            {
+                url: "gallery/22.jpeg",
+            },
+            {
+                url: "gallery/23.jpeg",
+            },
+            {
+                url: "gallery/24.jpeg",
+            },
+            {
+                url: "gallery/25.jpeg",
+            },
+            {
+                url: "gallery/26.jpg",
+            },
+            {
+                url: "gallery/27.jpg",
+            },
+            {
+                url: "gallery/28.jpg",
+            },
+            {
+                url: "gallery/29.jpg",
+            },
+            {
+                url: "gallery/30.jpeg",
+            },
+            {
+                url: "gallery/31.jpg",
+            },
+            {
+                url: "gallery/32.jpg",
+            },
+            {
+                url: "gallery/33.jpg",
+            },
+            {
+                url: "gallery/34.jpeg",
+            },
+
+        ];
+
+        let currentImageIndex = 0;
+
+        function createGallery() {
+            const gallery = document.getElementById("gallery");
+            const thumbnailContainer = document.getElementById("thumbnailContainer");
+
+            images.forEach((image, index) => {
+                const imgContainer = document.createElement("div");
+                imgContainer.className =
+                    "relative group cursor-pointer overflow-hidden rounded-lg shadow-lg transition-transform hover:scale-[1.02]";
+
+                const img = document.createElement("img");
+                img.src = image.url;
+                img.alt = `Gallery image ${index + 1}`;
+                img.className = "w-full h-64 object-cover";
+                img.onclick = () => openLightbox(index);
+
+                imgContainer.appendChild(img);
+                gallery.appendChild(imgContainer);
+
+                const thumbnail = document.createElement("img");
+                thumbnail.src = image.url;
+                thumbnail.alt = `Thumbnail ${index + 1}`;
+                thumbnail.className = "thumbnail";
+                thumbnail.onclick = () => showImage(index);
+                thumbnailContainer.appendChild(thumbnail);
+            });
+        }
+
+        function openLightbox(index) {
+            const lightbox = document.getElementById("lightbox");
+            lightbox.classList.add("active");
+            showImage(index);
+            document.addEventListener("keydown", handleKeyPress);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById("lightbox");
+            lightbox.classList.remove("active");
+            document.removeEventListener("keydown", handleKeyPress);
+        }
+
+        function showImage(index) {
+            currentImageIndex = index;
+            const lightboxImage = document.getElementById("lightboxImage");
+            lightboxImage.src = images[index].url;
+
+            document.querySelectorAll(".thumbnail").forEach((thumb, i) => {
+                thumb.classList.toggle("active", i === index);
+            });
+        }
+
+        function prevImage() {
+            const newIndex = (currentImageIndex - 1 + images.length) % images.length;
+            showImage(newIndex);
+        }
+
+        function nextImage() {
+            const newIndex = (currentImageIndex + 1) % images.length;
+            showImage(newIndex);
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowLeft") prevImage();
+            if (e.key === "ArrowRight") nextImage();
+        }
+
+        createGallery();
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+            const backToTopBtn = document.getElementById("backToTop");
+            const contactForm = document.getElementById("contactForm");
+            mobileMenuBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+            window.addEventListener("scroll", () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.style.opacity = "1";
+                } else {
+                    backToTopBtn.style.opacity = "0";
+                }
+            });
+
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            const counters = document.querySelectorAll(".counter-value");
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.getAttribute("data-target"));
+                        let count = 0;
+                        const updateCount = () => {
+                            const increment = target / 50;
+                            if (count < target) {
+                                count += increment;
+                                entry.target.textContent = Math.ceil(count);
+                                setTimeout(updateCount, 20);
+                            } else {
+                                entry.target.textContent = target;
+                            }
+                        };
+                        updateCount();
+                        counterObserver.unobserve(entry.target);
+                    }
+                });
+            });
+
+            counters.forEach((counter) => counterObserver.observe(counter));
+            contactForm.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData);
+
+                const notification = document.createElement("div");
+                notification.className =
+                    "fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform transition-transform duration-300";
+                notification.textContent = "Message sent successfully!";
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.style.transform = "translateX(150%)";
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+
+                contactForm.reset();
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileMenuButton = document.querySelector("button.lg\\:hidden");
+            const nav = document.querySelector("nav div.hidden");
+            mobileMenuButton.addEventListener("click", function () {
+                nav.classList.toggle("hidden");
+                nav.classList.toggle("flex");
+                nav.classList.toggle("flex-col");
+                nav.classList.toggle("absolute");
+                nav.classList.toggle("top-full");
+                nav.classList.toggle("left-0");
+                nav.classList.toggle("right-0");
+                nav.classList.toggle("bg-white");
+                nav.classList.toggle("p-4");
+            });
+            const form = document.querySelector("form");
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                console.log("Form submitted:", data);
+                const notification = document.createElement("div");
+                notification.className =
+                    "fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded shadow-lg";
+                notification.textContent = "Message sent successfully!";
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+                form.reset();
+            });
+        });
+    </script>
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>Sandeep Portfolio</h3>
+                <p>Thank you for visiting my personal portfolio website. Connect with me over socials. <br /> <br />
+                    Keep Rising 🚀. Connect with me over live chat!</p>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="/#home"><i class="fas fa-chevron-circle-right"></i> home</a>
+                <a href="/#about"><i class="fas fa-chevron-circle-right"></i> about</a>
+                <a href="/#skills"><i class="fas fa-chevron-circle-right"></i> skills</a>
+                <a href="/#education"><i class="fas fa-chevron-circle-right"></i> education</a>
+                <a href="/#work"><i class="fas fa-chevron-circle-right"></i> work</a>
+                <a href="/#experience"><i class="fas fa-chevron-circle-right"></i> experience</a>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <p> <i class="fas fa-phone"></i>+977 9768827327</p>
+                <p> <i class="fas fa-envelope"></i>sandeepbasnetxettri@gmail.com</p>
+                <p> <i class="fas fa-map-marked-alt"></i>nepal , Dumkibas</p>
+                <div class="share">
+
+                    <li><a class="github" aria-label="GitHub" href="https://github.com/sandeepbasnetxettri"
+                            target="_blank"><i class="fab fa-github"></i></a></li>
+                    <li><a class="instagram" aria-label="Instagram"
+                            href="https://www.instagram.com/sandeepbasnetxettri"><i class="fab fa-instagram"
+                                target="_blank"></i></a></li>
+                    <li><a class="instagram" aria-label="Instagram"
+                            href="https://www.facebook.com/sandeep.basnet.xettri"><i class="fab fa-facebook"
+                                target="_blank"></i></a></li>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="credit">Designed with <i class="fa fa-heart pulse"></i> by <a
+                href="https://github.com/sandeepbasnetxettri"> Sandeepbasnet</a></h1>
+
+    </section>
+    <!-- footer section ends -->
+
+    <!-- ==== ALL MAJOR JAVASCRIPT CDNS STARTS ==== -->
+
+    <!-- jquery cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
+
+    <script src="/assets/js/404.js"></script>
+</body>
+
+</html>
