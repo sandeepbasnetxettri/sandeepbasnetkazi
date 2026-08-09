@@ -1431,4 +1431,118 @@ form .button-area {
 
 #scroll-top.active {
   top: calc(100% - 12rem);
+<<<<<<< HEAD
 }
+=======
+}
+
+
+
+/* =========================
+   Services
+========================= */
+
+.services {
+  margin-top: 3rem;
+}
+
+.services>p {
+  margin-bottom: 1.5rem;
+  color: #bdbdbd;
+  font-size: 1rem;
+}
+
+.services>p span {
+  color: #ffae00;
+  font-weight: 700;
+}
+
+/* Services Grid */
+
+.services ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Service Item */
+
+.services ul li {
+  position: relative;
+  padding: 1.4rem 1.5rem;
+  background: linear-gradient(145deg, #1d1d1d, #141414);
+  color: #f5f5f5;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  border-left: 3px solid #ffae00;
+
+  font-size: 1.15rem;
+  font-weight: 500;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Hover */
+
+.services ul li:hover {
+  transform: translateY(-6px);
+  background: #ffffff;
+  color: #000000;
+  border-color: #000000;
+  box-shadow: 0 10px 25px rgba(255, 174, 0, 0.2);
+}
+
+/* Small glow effect */
+
+.services ul li::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background: #ffae00;
+  transition: width 0.3s ease;
+}
+
+.services ul li:hover::after {
+  width: 100%;
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 900px) {
+  .services ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 550px) {
+  .services {
+    margin-top: 2rem;
+  }
+
+  .services ul {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .services ul li {
+    padding: 1.2rem;
+    font-size: 1.05rem;
+  }
+}
+>>>>>>> 314baf8eee40c42a4a15654fa32a38df83a08513
