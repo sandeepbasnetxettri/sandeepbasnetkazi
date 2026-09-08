@@ -29,12 +29,22 @@ $(document).ready(function () {
         });
     });
 
-    // smooth scrolling
+    // smooth scrolling & close mobile menu on nav click
+    $('.navbar a').on('click', function () {
+        $('#menu').removeClass('fa-times');
+        $('.navbar').removeClass('nav-toggle');
+    });
+
     $('a[href*="#"]').on('click', function (e) {
-        e.preventDefault();
-        $('html, body').animate({
-            scrollTop: $($(this).attr('href')).offset().top,
-        }, 500, 'linear')
+        let target = $(this).attr('href');
+        if (target && target !== '#' && $(target).length) {
+            e.preventDefault();
+            $('#menu').removeClass('fa-times');
+            $('.navbar').removeClass('nav-toggle');
+            $('html, body').animate({
+                scrollTop: $(target).offset().top,
+            }, 500, 'linear');
+        }
     });
 
     // <!-- emailjs to mail contact form data -->
