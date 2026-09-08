@@ -25,6 +25,10 @@ body {
   width: 100%;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 *::selection {
   background: #2b3dda;
   color: #fff;
@@ -146,6 +150,26 @@ header .navbar ul li a:hover {
   display: none;
 }
 
+#nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
 @media (max-width: 768px) {
   header {
     padding: 1.5rem 5%;
@@ -153,6 +177,7 @@ header .navbar ul li a:hover {
 
   #menu {
     display: block;
+    z-index: 1001;
   }
 
   header .navbar {
@@ -168,6 +193,7 @@ header .navbar ul li a:hover {
     background-color: #0e0f31;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
     transition: 0.3s ease-in-out;
+    z-index: 999;
   }
 
   header .navbar ul {
@@ -454,6 +480,7 @@ header .navbar ul li a:hover {
 /* about section starts */
 .about {
   background: rgb(255, 255, 255);
+  min-height: auto;
 }
 
 .about .row {
@@ -1172,8 +1199,8 @@ form .message textarea {
   border: 2px solid rgb(115, 3, 167);
 }
 
-.field input:focus ~ i,
-.message textarea:focus ~ i {
+.field input:focus~i,
+.message textarea:focus~i {
   color: rgb(115, 3, 167);
 }
 
