@@ -1,32 +1,14 @@
 $(document).ready(function () {
 
-    function closeMenu() {
-        $('#menu').removeClass('fa-times');
-        $('.navbar').removeClass('nav-toggle');
-        $('#nav-overlay').removeClass('active');
-        $('body').removeClass('no-scroll');
-    }
-
-    function openMenu() {
-        $('#menu').addClass('fa-times');
-        $('.navbar').addClass('nav-toggle');
-        $('#nav-overlay').addClass('active');
-        $('body').addClass('no-scroll');
-    }
-
     $('#menu').click(function () {
-        if ($('.navbar').hasClass('nav-toggle')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
-    });
-
-    $('#nav-overlay').click(function () {
-        closeMenu();
+        $(this).toggleClass('fa-times');
+        $('.navbar').toggleClass('nav-toggle');
     });
 
     $(window).on('scroll load', function () {
+        $('#menu').removeClass('fa-times');
+        $('.navbar').removeClass('nav-toggle');
+
         if (window.scrollY > 60) {
             document.querySelector('#scroll-top').classList.add('active');
         } else {
@@ -49,14 +31,16 @@ $(document).ready(function () {
 
     // smooth scrolling & close mobile menu on nav click
     $('.navbar a').on('click', function () {
-        closeMenu();
+        $('#menu').removeClass('fa-times');
+        $('.navbar').removeClass('nav-toggle');
     });
 
     $('a[href*="#"]').on('click', function (e) {
         let target = $(this).attr('href');
         if (target && target !== '#' && $(target).length) {
             e.preventDefault();
-            closeMenu();
+            $('#menu').removeClass('fa-times');
+            $('.navbar').removeClass('nav-toggle');
             $('html, body').animate({
                 scrollTop: $(target).offset().top,
             }, 500, 'linear');
@@ -178,8 +162,6 @@ fetchData().then(data => {
 
 fetchData("projects").then(data => {
     showProjects(data);
-}).catch(err => {
-    // Projects data is loaded statically in HTML
 });
 
 // <!-- tilt js effect starts -->
@@ -224,41 +206,46 @@ document.onkeydown = function (e) {
 /* ===== SCROLL REVEAL ANIMATION ===== */
 const srtop = ScrollReveal({
     origin: 'top',
-    distance: '60px',
-    duration: 900,
-    reset: false
+    distance: '80px',
+    duration: 1000,
+    reset: true
 });
 
 /* SCROLL HOME */
-srtop.reveal('.home .content h2', { delay: 150 });
+srtop.reveal('.home .content h3', { delay: 200 });
 srtop.reveal('.home .content p', { delay: 200 });
-srtop.reveal('.home .content .btn', { delay: 250 });
-srtop.reveal('.home .social-icons li', { interval: 150 });
-srtop.reveal('.home .image', { delay: 250 });
+srtop.reveal('.home .content .btn', { delay: 200 });
+
+srtop.reveal('.home .image', { delay: 400 });
+srtop.reveal('.home .linkedin', { interval: 600 });
+srtop.reveal('.home .github', { interval: 800 });
+srtop.reveal('.home .twitter', { interval: 1000 });
+srtop.reveal('.home .telegram', { interval: 600 });
+srtop.reveal('.home .instagram', { interval: 600 });
+srtop.reveal('.home .dev', { interval: 600 });
 
 /* SCROLL ABOUT */
-srtop.reveal('.about .heading', { delay: 150 });
-srtop.reveal('.about .row .image', { delay: 200 });
-srtop.reveal('.about .row .content', { delay: 250 });
+srtop.reveal('.about .content h3', { delay: 200 });
+srtop.reveal('.about .content .tag', { delay: 200 });
+srtop.reveal('.about .content p', { delay: 200 });
+srtop.reveal('.about .content .box-container', { delay: 200 });
+srtop.reveal('.about .content .resumebtn', { delay: 200 });
+
 
 /* SCROLL SKILLS */
-srtop.reveal('.skills .heading', { delay: 150 });
-srtop.reveal('.skills .container', { delay: 200 });
-srtop.reveal('.skills .container .bar', { interval: 80 });
+srtop.reveal('.skills .container', { interval: 200 });
+srtop.reveal('.skills .container .bar', { delay: 400 });
 
 /* SCROLL EDUCATION */
-srtop.reveal('.education .heading', { delay: 150 });
-srtop.reveal('.education .qoute', { delay: 200 });
-srtop.reveal('.education .box', { interval: 150 });
+srtop.reveal('.education .box', { interval: 200 });
 
 /* SCROLL PROJECTS */
-srtop.reveal('.work .heading', { delay: 150 });
-srtop.reveal('.work .work-card', { interval: 150 });
+srtop.reveal('.work .box', { interval: 200 });
 
 /* SCROLL EXPERIENCE */
-srtop.reveal('.experience .heading', { delay: 150 });
-srtop.reveal('.experience .timeline .container', { interval: 150 });
+srtop.reveal('.experience .timeline', { delay: 400 });
+srtop.reveal('.experience .timeline .container', { interval: 400 });
 
 /* SCROLL CONTACT */
-srtop.reveal('.contact .heading', { delay: 150 });
-srtop.reveal('.contact .container', { delay: 200 });
+srtop.reveal('.contact .container', { delay: 400 });
+srtop.reveal('.contact .container .form-group', { delay: 400 });
