@@ -1443,8 +1443,8 @@ form .button-area {
 /* scroll top starts */
 #scroll-top {
   position: fixed;
-  bottom: 2.5rem;
-  right: 2.5rem;
+  bottom: 9.5rem;
+  right: 2.7rem;
   padding: 1.2rem 1.6rem;
   font-size: 2rem;
   background: #ffae00;
@@ -1469,9 +1469,343 @@ form .button-area {
 
 @media (max-width: 480px) {
   #scroll-top {
-    bottom: 1.8rem;
+    bottom: 13rem;
     right: 1.8rem;
     padding: 1rem 1.4rem;
     font-size: 1.8rem;
   }
 }
+
+/* ===== BUSINESS CONTACT ADDITIONS ===== */
+
+/* --- Header contact buttons --- */
+.header-contact-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-left: 2rem;
+}
+
+.header-contact-btns a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 5rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0.02rem;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.header-contact-btns a.btn-call {
+  background: linear-gradient(135deg, #7303a7 0%, #011aff 100%);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(115, 3, 167, 0.35);
+}
+
+.header-contact-btns a.btn-call:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(115, 3, 167, 0.5);
+  color: #fff;
+  border-bottom: none;
+}
+
+.header-contact-btns a.btn-wa {
+  background: linear-gradient(135deg, #25D366 0%, #128C5E 100%);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.35);
+}
+
+.header-contact-btns a.btn-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5);
+  color: #fff;
+  border-bottom: none;
+}
+
+/* --- Hero CTA contact row --- */
+.hero-contact-cta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-contact-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.9rem 2rem;
+  border-radius: 5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hero-contact-cta a.hero-call {
+  background: linear-gradient(135deg, #fc8c05, #ffae00);
+  color: #0e2431;
+  box-shadow: 0 4px 14px rgba(252, 140, 5, 0.4);
+}
+
+.hero-contact-cta a.hero-call:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(252, 140, 5, 0.55);
+}
+
+.hero-contact-cta a.hero-wa {
+  background: linear-gradient(135deg, #25D366 0%, #128C5E 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+}
+
+.hero-contact-cta a.hero-wa:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.55);
+}
+
+/* --- Contact section quick-contact cards --- */
+.contact-quick-info {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-quick-info a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2.2rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.contact-quick-info a.cqi-call {
+  background: linear-gradient(135deg, #7303a7 0%, #011aff 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(115, 3, 167, 0.35);
+}
+
+.contact-quick-info a.cqi-call:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(115, 3, 167, 0.5);
+}
+
+.contact-quick-info a.cqi-wa {
+  background: linear-gradient(135deg, #25D366 0%, #128C5E 100%);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+.contact-quick-info a.cqi-wa:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.5);
+}
+
+/* --- Form help text --- */
+.form-help-text {
+  margin-top: 1rem;
+  font-size: 1.35rem;
+  color: #555;
+  text-align: center;
+  text-transform: none;
+}
+
+.form-help-text a {
+  color: #25D366;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.form-help-text a:hover {
+  text-decoration: underline;
+}
+
+/* --- Footer WhatsApp link --- */
+.footer-wa-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #25D366 !important;
+  font-weight: 700;
+  text-transform: none;
+  font-size: 1.5rem;
+  text-decoration: none;
+  margin-top: 0.4rem;
+}
+
+.footer-wa-link:hover {
+  text-decoration: underline;
+}
+
+/* --- Floating WhatsApp FAB --- */
+#whatsapp-fab {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  width: 5.8rem;
+  height: 5.8rem;
+  border-radius: 50%;
+  background: #25D366;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45), 0 2px 8px rgba(0, 0, 0, 0.12);
+  z-index: 1050;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: wa-pulse 2.5s infinite;
+}
+
+#whatsapp-fab:hover,
+#whatsapp-fab:focus-visible {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.65), 0 4px 12px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+}
+
+#whatsapp-fab i {
+  color: #ffffff;
+  line-height: 1;
+}
+
+@keyframes wa-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  50% {
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.7), 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+}
+
+/* Tooltip on desktop hover */
+.whatsapp-tooltip {
+  position: absolute;
+  right: calc(100% + 14px);
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
+  background: #111b21;
+  color: #ffffff;
+  padding: 0.75rem 1.4rem;
+  border-radius: 2rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  white-space: nowrap;
+  letter-spacing: 0.02rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  font-family: "Nunito", sans-serif;
+  z-index: 1051;
+}
+
+.whatsapp-tooltip::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #111b21;
+}
+
+#whatsapp-fab:hover .whatsapp-tooltip,
+#whatsapp-fab:focus-visible .whatsapp-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* --- Mobile sticky call/WhatsApp bar --- */
+#mobile-sticky-bar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  background: #fff;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.15);
+}
+
+#mobile-sticky-bar a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.3rem 0;
+  font-size: 1.55rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: none;
+  transition: opacity 0.2s;
+}
+
+#mobile-sticky-bar a:active {
+  opacity: 0.8;
+}
+
+#mobile-sticky-bar a.msb-call {
+  background: linear-gradient(135deg, #7303a7 0%, #011aff 100%);
+  color: #fff;
+}
+
+#mobile-sticky-bar a.msb-wa {
+  background: linear-gradient(135deg, #25D366 0%, #128C5E 100%);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  #mobile-sticky-bar {
+    display: flex;
+  }
+
+  /* push WhatsApp FAB above mobile sticky bar */
+  #whatsapp-fab {
+    bottom: 6.8rem;
+    right: 1.8rem;
+    width: 5.2rem;
+    height: 5.2rem;
+    font-size: 2.8rem;
+  }
+
+  /* push scroll-top above WhatsApp FAB */
+  #scroll-top {
+    bottom: 12.8rem !important;
+    right: 2rem !important;
+  }
+
+  .whatsapp-tooltip {
+    display: none !important;
+  }
+
+  /* hide header contact buttons on small screens – the sticky bar covers it */
+  .header-contact-btns {
+    display: none;
+  }
+
+  /* add body padding at bottom so footer content isn't hidden behind sticky bar */
+  body {
+    padding-bottom: 5.5rem;
+  }
+}
+/* ===== END BUSINESS CONTACT ADDITIONS ===== */
