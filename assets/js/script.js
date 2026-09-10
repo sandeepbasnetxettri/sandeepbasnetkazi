@@ -47,22 +47,112 @@ $(document).ready(function () {
         }
     });
 
-    // <!-- emailjs to mail contact form data -->
-    // $("#contact-form").submit(function (event) {
-    //     emailjs.init("user_TTDmetQLYgWCLzHTDgqxm");
+    // Web3Forms AJAX submission handler
+    const contactForm = document.getElementById("contact-form");
+    const formStatus = document.getElementById("form-status");
+    const submitBtn = document.getElementById("submit-btn");
 
-    //     emailjs.sendForm('contact_service', 'template_contact', '#contact-form')
-    //         .then(function (response) {
-    //             console.log('SUCCESS!', response.status, response.text);
-    //             document.getElementById("contact-form").reset();
-    //             alert("Form Submitted Successfully");
-    //         }, function (error) {
-    //             console.log('FAILED...', error);
-    //             alert("Form Submission Failed! Try Again");
-    //         });
-    //     event.preventDefault();
-    // });
-    // <!-- emailjs to mail contact form data -->
+    if (contactForm) {
+        // Clear input errors on typing
+        contactForm.querySelectorAll("input, textarea").forEach(input => {
+            input.addEventListener("input", function () {
+                this.classList.remove("input-error");
+            });
+        });
+
+        contactForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const nameInput = document.getElementById("name");
+            const emailInput = document.getElementById("email");
+            const messageInput = document.getElementById("message");
+
+            // Client-side validation
+            let isValid = true;
+            let firstInvalidField = null;
+
+            // Clear previous status
+            formStatus.className = "";
+            formStatus.innerHTML = "";
+            formStatus.style.display = "none";
+
+            const nameVal = nameInput ? nameInput.value.trim() : "";
+            const emailVal = emailInput ? emailInput.value.trim() : "";
+            const messageVal = messageInput ? messageInput.value.trim() : "";
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!nameVal || nameVal.length < 2) {
+                isValid = false;
+                if (nameInput) {
+                    nameInput.classList.add("input-error");
+                    if (!firstInvalidField) firstInvalidField = nameInput;
+                }
+            }
+
+            if (!emailVal || !emailRegex.test(emailVal)) {
+                isValid = false;
+                if (emailInput) {
+                    emailInput.classList.add("input-error");
+                    if (!firstInvalidField) firstInvalidField = emailInput;
+                }
+            }
+
+            if (!messageVal || messageVal.length < 5) {
+                isValid = false;
+                if (messageInput) {
+                    messageInput.classList.add("input-error");
+                    if (!firstInvalidField) firstInvalidField = messageInput;
+                }
+            }
+
+            if (!isValid) {
+                if (firstInvalidField) firstInvalidField.focus();
+                formStatus.className = "active status-error";
+                formStatus.innerHTML = `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> <span>Please fill in all required fields with valid details.</span>`;
+                formStatus.style.display = "flex";
+                return;
+            }
+
+            // Submit state
+            const btnText = submitBtn.querySelector(".btn-text");
+            const btnIcon = submitBtn.querySelector(".btn-icon");
+
+            submitBtn.disabled = true;
+            if (btnText) btnText.textContent = "Sending...";
+            if (btnIcon) btnIcon.className = "fas fa-spinner fa-spin btn-icon";
+
+            try {
+                const formData = new FormData(contactForm);
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.status === 200 && data.success) {
+                    formStatus.className = "active status-success";
+                    formStatus.innerHTML = `<i class="fas fa-check-circle" aria-hidden="true"></i> <span>Message sent successfully! Thanks for reaching out. I'll get back to you soon.</span>`;
+                    formStatus.style.display = "flex";
+                    contactForm.reset();
+                    contactForm.querySelectorAll(".input-error").forEach(el => el.classList.remove("input-error"));
+                } else {
+                    formStatus.className = "active status-error";
+                    formStatus.innerHTML = `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> <span>Something went wrong while sending your message. Please try again or contact me directly via <a href="https://wa.me/9779768827327" target="_blank" rel="noopener noreferrer">WhatsApp</a> or <a href="tel:+9779768827327">Phone</a>.</span>`;
+                    formStatus.style.display = "flex";
+                }
+            } catch (err) {
+                console.error("Form submission error:", err);
+                formStatus.className = "active status-error";
+                formStatus.innerHTML = `<i class="fas fa-exclamation-circle" aria-hidden="true"></i> <span>Unable to send message due to a connection issue. Please check your internet or reach out directly on <a href="https://wa.me/9779768827327" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</span>`;
+                formStatus.style.display = "flex";
+            } finally {
+                submitBtn.disabled = false;
+                if (btnText) btnText.textContent = "Submit";
+                if (btnIcon) btnIcon.className = "fas fa-paper-plane btn-icon";
+            }
+        });
+    }
 
 });
 
@@ -90,32 +180,38 @@ var typed = new Typed(".typing-text", {
 // <!-- typed js effect ends -->
 
 async function fetchData(type = "skills") {
-    let response
-    type === "skills" ?
-        response = await fetch("skills.json")
-        :
-        response = await fetch("./projects/projects.json")
-    const data = await response.json();
-    return data;
+    try {
+        const response = type === "skills"
+            ? await fetch("skills.json")
+            : await fetch("./projects/projects.json");
+        if (!response.ok) return null;
+        return await response.json();
+    } catch (error) {
+        console.log("Could not load dynamic data for " + type, error);
+        return null;
+    }
 }
 
 function showSkills(skills) {
+    if (!skills || !Array.isArray(skills) || skills.length === 0) return;
     let skillsContainer = document.getElementById("skillsContainer");
+    if (!skillsContainer) return;
     let skillHTML = "";
     skills.forEach(skill => {
         skillHTML += `
         <div class="bar">
               <div class="info">
-                <img src=${skill.icon} alt="skill" />
+                <img src="${skill.icon}" alt="${skill.name}" />
                 <span>${skill.name}</span>
               </div>
-            </div>`
+            </div>`;
     });
     skillsContainer.innerHTML = skillHTML;
 }
 
 function showProjects(projects) {
     let projectsContainer = document.querySelector("#work .box-container");
+    if (!projectsContainer || !projects || !Array.isArray(projects)) return;
     let projectHTML = "";
     projects.slice(0, 10).filter(project => project.category != "android").forEach(project => {
         projectHTML += `
@@ -133,7 +229,7 @@ function showProjects(projects) {
           </div>
         </div>
       </div>
-    </div>`
+    </div>`;
     });
     projectsContainer.innerHTML = projectHTML;
 
@@ -148,7 +244,7 @@ function showProjects(projects) {
         origin: 'top',
         distance: '80px',
         duration: 1000,
-        reset: true
+        reset: false
     });
 
     /* SCROLL PROJECTS */
@@ -157,12 +253,12 @@ function showProjects(projects) {
 }
 
 fetchData().then(data => {
-    showSkills(data);
-});
+    if (data) showSkills(data);
+}).catch(err => console.log(err));
 
 fetchData("projects").then(data => {
-    showProjects(data);
-});
+    if (data) showProjects(data);
+}).catch(err => console.log(err));
 
 // <!-- tilt js effect starts -->
 VanillaTilt.init(document.querySelectorAll(".tilt"), {
@@ -208,7 +304,7 @@ const srtop = ScrollReveal({
     origin: 'top',
     distance: '80px',
     duration: 1000,
-    reset: true
+    reset: false
 });
 
 /* SCROLL HOME */
@@ -247,5 +343,7 @@ srtop.reveal('.experience .timeline', { delay: 400 });
 srtop.reveal('.experience .timeline .container', { interval: 400 });
 
 /* SCROLL CONTACT */
-srtop.reveal('.contact .container', { delay: 400 });
-srtop.reveal('.contact .container .form-group', { delay: 400 });
+srtop.reveal('.contact .heading', { delay: 200 });
+srtop.reveal('.contact .container', { delay: 300 });
+srtop.reveal('.contact-illustration-card', { delay: 400, origin: 'left', distance: '40px' });
+srtop.reveal('.contact .content form', { delay: 400, origin: 'right', distance: '40px' });
